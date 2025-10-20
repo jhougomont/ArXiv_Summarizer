@@ -1,0 +1,53 @@
+# arXiv Summarizer Configuration
+
+# arXiv API Settings
+arxiv:
+  fetch_batch_size: 500
+  default_categories:
+    - cs.AI
+    - cs.CV
+    - cs.CY
+    - cs.LG
+
+# OpenAI Settings
+openai:
+  default_model: gpt-3.5-turbo
+  temperature: 0.5
+  max_tokens_abstract: 100
+  max_tokens_category: 200
+  rate_limit_delay: 0.5  # seconds between requests
+  max_retries: 3
+  retry_delay: 2.0  # seconds, will use exponential backoff
+
+# Processing Settings
+processing:
+  concurrent_requests: 5  # number of concurrent API calls
+  max_summaries_per_category: 15  # for category summary generation
+  enable_checkpointing: false  # save progress to resume on failure
+
+# Keyword Lists
+keywords:
+  ocean_science:
+    - ocean
+    - marine
+    - sea
+    - coastal
+    - maritime
+    - offshore
+    - hydrography
+    - oceanography
+    - bathymetry
+    - aquatic
+
+# Output Settings
+output:
+  directory: output
+  include_statistics: true
+  include_metadata: true
+
+# Logging Settings
+logging:
+  level: INFO  # DEBUG, INFO, WARNING, ERROR, CRITICAL
+  format: '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+  file: arxiv_summarizer.log
+  console: true
